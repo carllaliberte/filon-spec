@@ -1,0 +1,32 @@
+{
+  "id": "fr-CA",
+  "name": "French (Canada)",
+  "version": "0.1.0",
+  "lexicon": {
+    "prefer": [
+      { "from": "assurance maladie", "to": "RAMQ" },
+      { "from": "liquor store", "to": "SAQ" },
+      { "from": "e-mail", "to": "courriel" },
+      { "from": "weekend", "to": "fin de semaine" },
+      { "from": "parking", "to": "stationnement" }
+    ],
+    "avoid": ["smartphone", "cash"],
+    "institutions": [
+      { "id": "ramq", "local_name": "RAMQ", "generic_names": ["assurance maladie", "NHS", "Medicare"] },
+      { "id": "saq", "local_name": "SAQ", "generic_names": ["liquor store", "wine shop"] }
+    ]
+  },
+  "register": {
+    "default": "mixed",
+    "notes": "Tu is common; vous for institutions. Prefer Canadian French lexis over France defaults."
+  },
+  "residency": {
+    "allowed_regions": ["CA"],
+    "deny_regions": [],
+    "memory_may_leave": false
+  },
+  "tests": [
+    { "id": "ca-1", "input": "Renouvelle ton assurance maladie", "locale": "fr-CA", "expect": "contains", "value": "RAMQ" },
+    { "id": "ca-2", "input": "Go to the liquor store", "locale": "fr-CA", "expect": "contains", "value": "SAQ" }
+  ]
+}

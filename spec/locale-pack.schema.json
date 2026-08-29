@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://filon.dev/spec/locale-pack.schema.json",
+  "title": "Filon Locale Pack",
+  "type": "object",
+  "required": ["id", "name", "version", "lexicon", "register", "residency", "tests"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]+)*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "lexicon": {
+      "type": "object",
+      "required": ["prefer", "avoid", "institutions"],
+      "properties": {
+        "prefer": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["from", "to"],
+            "properties": {
+              "from": { "type": "string" },
+              "to": { "type": "string" },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "avoid": { "type": "array", "items": { "type": "string" } },
+        "institutions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "local_name", "generic_names"],
+            "properties": {
+              "id": { "type": "string" },
+              "local_name": { "type": "string" },
+              "generic_names": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "register": {
+      "type": "object",
+      "required": ["default"],
+      "properties": {
+        "default": { "enum": ["formal", "familiar", "mixed"] },
+        "notes": { "type": "string" }
+      }
+    },
+    "residency": {
+      "type": "object",
+      "required": ["allowed_regions", "deny_regions", "memory_may_leave"],
+      "properties": {
+        "allowed_regions": { "type": "array", "items": { "type": "string" } },
+        "deny_regions": { "type": "array", "items": { "type": "string" } },
+        "memory_may_leave": { "type": "boolean" }
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "input", "locale", "expect", "value"],
+        "properties": {
+          "id": { "type": "string" },
+          "input": { "type": "string" },
+          "locale": { "type": "string" },
+          "expect": { "enum": ["contains", "avoids", "residency_deny"] },
+          "value": { "type": "string" }
+        }
+      }
+    }
+  }
+}

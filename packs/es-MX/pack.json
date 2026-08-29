@@ -1,0 +1,31 @@
+{
+  "id": "es-MX",
+  "name": "Spanish (Mexico)",
+  "version": "0.1.0",
+  "lexicon": {
+    "prefer": [
+      { "from": "computadora portátil", "to": "laptop", "note": "common MX usage" },
+      { "from": "vosotros", "to": "ustedes", "note": "MX does not use vosotros" },
+      { "from": "coche", "to": "carro" },
+      { "from": "mobile phone", "to": "celular" }
+    ],
+    "avoid": ["vosotros", "ordenador", "móvil"],
+    "institutions": [
+      { "id": "sat", "local_name": "SAT", "generic_names": ["tax agency", "IRS", "hacienda genérica"] },
+      { "id": "imss", "local_name": "IMSS", "generic_names": ["social security", "national health service"] }
+    ]
+  },
+  "register": {
+    "default": "mixed",
+    "notes": "Usted for institutions and elders; tú among peers. Never vosotros."
+  },
+  "residency": {
+    "allowed_regions": ["MX"],
+    "deny_regions": [],
+    "memory_may_leave": false
+  },
+  "tests": [
+    { "id": "mx-1", "input": "El vosotros es correcto aquí", "locale": "es-MX", "expect": "avoids", "value": "vosotros" },
+    { "id": "mx-2", "input": "Paga tus impuestos en la tax agency", "locale": "es-MX", "expect": "contains", "value": "SAT" }
+  ]
+}

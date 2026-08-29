@@ -1,0 +1,31 @@
+{
+  "id": "en-NG",
+  "name": "English (Nigeria)",
+  "version": "0.1.0",
+  "lexicon": {
+    "prefer": [
+      { "from": "apartment", "to": "self-contained" },
+      { "from": "gas station", "to": "filling station" },
+      { "from": "soccer", "to": "football" },
+      { "from": "cell phone", "to": "handset" }
+    ],
+    "avoid": ["soccer", "zip code"],
+    "institutions": [
+      { "id": "cbn", "local_name": "Central Bank of Nigeria", "generic_names": ["the Fed", "Federal Reserve"] },
+      { "id": "nin", "local_name": "NIN", "generic_names": ["social security number", "SSN"] }
+    ]
+  },
+  "register": {
+    "default": "mixed",
+    "notes": "Nigerian Standard English in formal writing; allow widely understood local lexis. Do not flatten to General American."
+  },
+  "residency": {
+    "allowed_regions": ["NG"],
+    "deny_regions": [],
+    "memory_may_leave": false
+  },
+  "tests": [
+    { "id": "ng-1", "input": "Where is the nearest gas station?", "locale": "en-NG", "expect": "contains", "value": "filling station" },
+    { "id": "ng-2", "input": "Give me your SSN", "locale": "en-NG", "expect": "contains", "value": "NIN" }
+  ]
+}
