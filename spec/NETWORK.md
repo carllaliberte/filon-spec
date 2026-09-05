@@ -31,6 +31,8 @@ Before a hop that would send text or memory off-node:
 3. If `allowed_regions` is not `any` and `destination` is absent → refuse.
 4. If the hop carries memory and `memory_may_leave` is false → refuse.
 
+These four checks read locale-pack fields. `may_leave` / `memory_may_leave` are **declared policy**, not a cryptographic guarantee. A node that hops because the boolean is true has followed the pack. It has not proven the hop. Do not treat this as a seal or as a strong security control.
+
 HTTP shape (informative):
 
 ```http
