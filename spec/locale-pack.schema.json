@@ -54,7 +54,10 @@
       "properties": {
         "allowed_regions": { "type": "array", "items": { "type": "string" } },
         "deny_regions": { "type": "array", "items": { "type": "string" } },
-        "memory_may_leave": { "type": "boolean" }
+        "memory_may_leave": {
+          "type": "boolean",
+          "description": "Declarative residency policy: whether the pack author states that memory may leave the node. Not a cryptographic guarantee. Runtimes must not treat may_leave() / memory_may_leave as a strong security control."
+        }
       }
     },
     "tests": {

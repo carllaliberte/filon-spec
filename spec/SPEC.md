@@ -38,9 +38,11 @@ Required keys: `id`, `name`, `version`, `lexicon`, `register`, `residency`, `tes
 
 - `allowed_regions[]`: ISO 3166-1 alpha-2 or `any`.
 - `deny_regions[]`
-- `memory_may_leave`: boolean
+- `memory_may_leave`: boolean — **declarative policy**, not a cryptographic guarantee.
 
 Runtime: if destination is in `deny_regions`, refuse. If `allowed_regions` is not `any` and destination is absent, refuse.
+
+`memory_may_leave` and the verb `may_leave` are pack data: the author's stated residency policy. They are not a signature, not a hash, not a seal. A future runtime that treats `may_leave() === true` as "the hop is proven allowed" is wrong. Enforcement is the node's job. This boolean is not a strong security control.
 
 ### tests
 
@@ -51,6 +53,8 @@ Each test: `{id, input, locale, expect}` where `expect` is `contains` | `avoids`
 1. `resolve(id)` → pack or 404
 2. `adapt(text, id)` → apply `prefer` replacements (case-insensitive)
 3. `may_leave(id, destination)` → boolean
+
+`may_leave` reads `residency` (`allowed_regions`, `deny_regions`, `memory_may_leave`). It returns declared policy. It does not attest, sign, or prove the hop. Integrators must not promote this boolean to a cryptographic or access-control guarantee.
 
 No network to a paid model is required for v0.1.
 

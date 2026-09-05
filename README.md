@@ -31,6 +31,8 @@ See [spec/SPEC.md](spec/SPEC.md) and [spec/locale-pack.schema.json](spec/locale-
 2. `adapt(text, id)` → apply `prefer` replacements
 3. `may_leave(id, destination)` → boolean
 
+`may_leave` is **declarative pack data**, not a cryptographic guarantee. A `true` means the pack author stated that the destination is allowed. It is not a seal, not a proof, not a strong security control. A future runtime must not treat it as one. See [spec/SPEC.md](spec/SPEC.md).
+
 Network packs (`kind: "network"`) change how a node behaves on the world network. Format: [spec/NETWORK.md](spec/NETWORK.md).
 
 Implemented reference verbs for two packs:
